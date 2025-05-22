@@ -1,0 +1,31 @@
+.app-background__image{
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.app-background{
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100dvh;
+  background-color: var(--color-purple-100);
+}
+
+.app{
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.app__faq{
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-300);
+  gap: var(--spacing-300);
+  background-color: var(--color-white);
+  border-radius: 0.5rem;
+}
