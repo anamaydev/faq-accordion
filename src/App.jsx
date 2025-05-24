@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import {nanoid} from 'nanoid'
+import {motion, AnimatePresence} from 'motion/react'
 import './App.css'
 import mobileBackground from './assets/images/background-pattern-mobile.svg'
 import tabletBackground from './assets/images/background-pattern-desktop.svg'
@@ -7,17 +8,15 @@ import plusIcon from './assets/images/icon-plus.svg'
 import minusIcon from './assets/images/icon-minus.svg'
 import startIcon from './assets/images/icon-star.svg'
 
-/* todo:
-*   [x] create custom css variables
-*   [x] set up custom font
-*   [x] add reset.css file */
-
 function App() {
 
   const [faqData, setFaqData] = useState([]);
   const [selectedFaq, setSelectedFaq] = useState(null);
 
   // console.log(selectedFaq);
+  useEffect(()=>{
+    console.log(selectedFaq);
+  },[selectedFaq]);
 
   useEffect(() => {
     async function loadFaqData() {
@@ -46,7 +45,27 @@ function App() {
             {selectedFaq === faq.question && <img src={plusIcon} alt=""/>}
             {selectedFaq !== faq.question && <img src={minusIcon} alt=""/>}
           </div>
-          {selectedFaq === faq.question && <p className="app__faq-list-answer">{faq.answer}</p>}
+          {
+            selectedFaq === faq.question &&
+            <motion.p
+              className="app__faq-list-answer"
+              initial={{
+                height: 0,
+              }}
+              animate={{
+                height: 'auto',
+                transition: {
+                  duration: 0.7,
+                }
+              }}
+              exit={{
+                height: 0,
+                transition:{
+                  duration: 0.7,
+                }
+              }}
+            >{faq.answer}</motion.p>
+          }
         </div>
       </li>
     ))
