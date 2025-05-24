@@ -45,27 +45,23 @@ function App() {
             {selectedFaq === faq.question && <img src={plusIcon} alt=""/>}
             {selectedFaq !== faq.question && <img src={minusIcon} alt=""/>}
           </div>
-          {
-            selectedFaq === faq.question &&
-            <motion.p
-              className="app__faq-list-answer"
-              initial={{
-                height: 0,
-              }}
-              animate={{
-                height: 'auto',
-                transition: {
-                  duration: 0.7,
-                }
-              }}
-              exit={{
-                height: 0,
-                transition:{
-                  duration: 0.7,
-                }
-              }}
-            >{faq.answer}</motion.p>
-          }
+
+          <AnimatePresence>
+            {
+              selectedFaq === faq.question &&
+              <motion.p
+                className="app__faq-list-answer"
+                initial="collapsed"
+                animate="open"
+                exit="collapsed"
+                variants={{
+                  open: { opacity: 1, height: "auto" },
+                  collapsed: { opacity: 0, height: 0 }
+                }}
+                transition={{ duration: 0.4 }}
+              >{faq.answer}</motion.p>
+            }
+          </AnimatePresence>
         </div>
       </li>
     ))

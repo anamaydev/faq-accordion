@@ -78,6 +78,7 @@
 .app__faq-list-item-content{
   display: flex;
   flex-direction: column;
+  /* temp */
   gap: var(--spacing-300);
 }
 
